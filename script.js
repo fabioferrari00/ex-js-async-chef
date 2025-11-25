@@ -10,22 +10,3 @@
 // Restituire una Promise con la data di nascita dello chef.
 // Gestire gli errori con try/catch
 
-async function getChefBirthday(id) {
-  const recipeResponse = await fetch(`https://dummyjson.com/recipes/${id}`)
-  const recipe = await recipeResponse.json();
-  const chefResponse = await fetch(`https://dummyjson.com/users/${recipe.userId}`)
-  const chef = await chefResponse.json();
-
-  return chef.birthDate
-}
-
-
-(async () => {
-  try {
-    const birthday = await getChefBirthday(1);
-    console.log('La data di nascita dello chef è:', birthday)
-  } catch (error) {
-    console.error(error);
-  }
-  console.log("fine")
-})();
