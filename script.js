@@ -16,8 +16,16 @@ async function fetchJson(url) {
 }
 
 async function getChefBirthday(id) {
-  const recipes = await fetchJson(`https://dummyjson.com/recipes/${id}`)
-  console.log(recipes)
+  const recipes = await fetchJson(`https://dummyjson.com/recipes/${id}`);
+  const chef = await fetchJson(`https://dummyjson.com/users/${recipes.userId}`);
+  return chef.birthDate
 }
 
-getChefBirthday(1)
+(async () => {
+  try {
+    const birthday = await getChefBirthday(1)
+    console.log("Data di nascita: ", birthday)
+  } catch (error) {
+    console.error(error)
+  }
+})()
