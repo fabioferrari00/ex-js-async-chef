@@ -9,4 +9,15 @@
 // Utilizzare await per chiamare le API.
 // Restituire una Promise con la data di nascita dello chef.
 // Gestire gli errori con try/catch
+async function fetchJson(url) {
+  const response = await fetch(url);
+  const obj = response.json()
+  return obj;
+}
 
+async function getChefBirthday(id) {
+  const recipes = await fetchJson(`https://dummyjson.com/recipes/${id}`)
+  console.log(recipes)
+}
+
+getChefBirthday(1)
